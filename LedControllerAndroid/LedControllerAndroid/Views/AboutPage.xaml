@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LedControllerAndroid.Views.AboutPage"
+             xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
+             xmlns:vm="clr-namespace:LedControllerAndroid.ViewModels"
+             Title="{Binding Title}">
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <CollectionView
+            Grid.Row="0"
+            ItemsSource="{Binding colors}"
+            x:Name="StyledGrid"
+            ItemTemplate="{StaticResource ImageOverlayTemplate}">
+        </CollectionView>
+        <!--<Button Text="Выбор цвета" Background="Purple" HorizontalOptions="Center" Clicked="Button_Clicked" Grid.Row="2">-->
+        <colorpicker:ColorCircle Grid.Row="1"></colorpicker:ColorCircle>
+    </Grid>
+
+</ContentPage>

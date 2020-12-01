@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LedControllerAndroid.Views.ItemsPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:LedControllerAndroid.ViewModels"  
+             xmlns:model="clr-namespace:LedControllerAndroid.Models"  
+             x:Name="BrowseItemsPage">
+
+    
+    <!--
+      x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
+      https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
+    -->
+    <RefreshView x:DataType="local:ItemsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Items}"
+                SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="64"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="64"/>
+                            <ColumnDefinition Width="256"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse WidthRequest="50" HeightRequest="25">
+                            <Ellipse.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="Purple"/>
+                                    <GradientStop Color="Blue" Offset="0.2"/>
+                                    <GradientStop Color="Green" Offset="0.4"/>
+                                    <GradientStop Color="Yellow" Offset="0.6"/>
+                                    <GradientStop Color="Red" Offset="0.8"/>
+                                </LinearGradientBrush>
+                            </Ellipse.Background>
+                            <!--<FontIcon x:Name="Icon"
+                        Width ="32"
+                        Height="32"
+                        Margin="6"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Foreground ="{x:Bind Converter={StaticResource ColorConventer}, Path=Color}" Glyph="&#xEA80;"
+                        />-->
+                        </Ellipse>
+                        <Label Grid.Column="1" Text="CheckBox"/>
+                        <CheckBox Grid.Column="2"
+                    />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>
